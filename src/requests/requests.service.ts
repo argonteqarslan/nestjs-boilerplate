@@ -1,27 +1,31 @@
 import { Injectable } from '@nestjs/common';
+import { IPaginationOptions } from '../utils/types/pagination-options';
+import { Request } from './domain/request';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { RequestRepository } from './infrastructure/persistence/request.repository';
-import { IPaginationOptions } from '../utils/types/pagination-options';
-import { Request } from './domain/request';
 
 @Injectable()
 export class RequestsService {
   constructor(
-    // Dependencies here
     private readonly requestRepository: RequestRepository,
   ) {}
 
-  async create(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    createRequestDto: CreateRequestDto,
-  ) {
-    // Do not remove comment below.
+  async create(createRequestDto: CreateRequestDto) {
     // <creating-property />
 
     return this.requestRepository.create({
-      // Do not remove comment below.
       // <creating-property-payload />
+      levelOfOperator: createRequestDto.levelOfOperator,
+      branch: createRequestDto.branch,
+      lastName: createRequestDto.lastName,
+      firstName: createRequestDto.firstName,
+      isCurrentlyEmployed: createRequestDto.isCurrentlyEmployed,
+      transitionDate: createRequestDto.transitionDate,
+      location: createRequestDto.location,
+      fileUrl: createRequestDto.fileUrl,
+      supportType: createRequestDto.supportType,
+      mentalHealthSupportType: createRequestDto.mentalHealthSupportType,
     });
   }
 
@@ -48,15 +52,22 @@ export class RequestsService {
 
   async update(
     id: Request['id'],
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     updateRequestDto: UpdateRequestDto,
   ) {
-    // Do not remove comment below.
     // <updating-property />
 
     return this.requestRepository.update(id, {
-      // Do not remove comment below.
       // <updating-property-payload />
+      levelOfOperator: updateRequestDto.levelOfOperator,
+      branch: updateRequestDto.branch,
+      lastName: updateRequestDto.lastName,
+      firstName: updateRequestDto.firstName,
+      isCurrentlyEmployed: updateRequestDto.isCurrentlyEmployed,
+      transitionDate: updateRequestDto.transitionDate,
+      location: updateRequestDto.location,
+      fileUrl: updateRequestDto.fileUrl,
+      supportType: updateRequestDto.supportType,
+      mentalHealthSupportType: updateRequestDto.mentalHealthSupportType,
     });
   }
 
